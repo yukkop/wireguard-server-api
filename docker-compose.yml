@@ -1,0 +1,27 @@
+---
+version: "2.1"
+services:
+  wireguard:
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wireguard-wgrest
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    volumes:
+      - ./config/wireguard/etc/wireguard:/etc/wireguard
+      - ./scripts/:/srv/wireguard/scripts
+      # - wireguard-etc-wireguard:/etc/wireguard
+      # - /lib/modules:/lib/modules #optional
+    ports:
+      - 51820:51820/udp
+      - 8383:8383
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: unless-stopped
+volumes:
+  wireguard-config:
+  wireguard-etc-wireguard:
