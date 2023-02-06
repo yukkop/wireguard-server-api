@@ -1,14 +1,30 @@
+### Инструкция по разворачиванию
+
+выгрузить репозиторий в отдельную папку на сервере
+к примеру:
 ```
-#!/bin/sh
-privatekey="$(wg genkey)"
-cat <<EOF
-[Interface]                                                   Address = 10.13.37.1/24                                       SaveConfig = true                                             PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE;                        PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE;                      ListenPort = 51820                                            PrivateKey = ${privatekey}
-EOF
+git clone <путь к репозиторию>
 ```
 
-Требуется скопировать в файл wg0.conf
-
-И потом этот файл положить в 
+перейти в эту папку
 ```
-<projectFolder>/config/wireguard/etc/wireguard
+cd <имя папки>
+```
+
+запустить докер
+```
+docker-compose up --build
+```
+
+запускаем скрипт для генерации файла wg0.conf
+```
+chmod 555 generator.sh
+./generator.sh > config/wireguard/etc/wireguard/wg0.conf
+```
+
+P.S.
+возможно прийдеться установить wireguard на сервер
+для того что бы скрипт заработал
+```
+apt install wireguard
 ```
