@@ -1,3 +1,6 @@
+this is from https://github.com/suquant/wgrest
+but in docker =D
+
 # Инструкция по разворачиванию
 
 выгрузить репозиторий в отдельную папку на сервере
