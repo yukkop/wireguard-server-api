@@ -54,4 +54,4 @@ apt install wireguard
 У сервера есть веб часть
 ```<ip>:8383/devices```
 
-пароль: capybarat
+пароль: capybara
