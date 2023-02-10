@@ -55,3 +55,5 @@ apt install wireguard
 ```<ip>:8383/devices```
 
 пароль: capybara
+
+![capybara](https://user-images.githubusercontent.com/45404995/217745100-1a47e81a-5740-4a78-ac54-4a9c3982de9a.png)
